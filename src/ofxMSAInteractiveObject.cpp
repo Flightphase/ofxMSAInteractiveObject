@@ -1,6 +1,6 @@
 /***********************************************************************
  
- Copyright (c) 2008, 2009, 2010, Memo Akten, www.memo.tv
+ Copyright (c) 2008, 2009, Memo Akten, www.memo.tv
  *** The Mega Super Awesome Visuals Company ***
  * All rights reserved.
  *
@@ -219,7 +219,7 @@ void ofxMSAInteractiveObject::_mousePressed(ofMouseEventArgs &e) {
 			_mouseDown = true;						// update flag
 		}
 	} else {								// if mouse is not over
-		onPressOutside(x, y, button);
+		// do nothing
 	}
 }
 

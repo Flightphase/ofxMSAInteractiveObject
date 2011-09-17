@@ -1,6 +1,6 @@
 /***********************************************************************
 
- Copyright (c) 2008, 2009, 2010, Memo Akten, www.memo.tv
+ Copyright (c) 2008, 2009, Memo Akten, www.memo.tv
  *** The Mega Super Awesome Visuals Company ***
  * All rights reserved.
  *
@@ -66,12 +66,12 @@ public:
 	int  getMouseY();					// returns mouse Y (in screen coordinates)
 	int  getLastMouseButton();			// returns last mouse button to have activity
 
-	virtual bool hitTest(int tx, int ty);		// returns true if given (x, y) coordinates (in screen space) are over the object (based on position and size)
+	bool hitTest(int tx, int ty);		// returns true if given (x, y) coordinates (in screen space) are over the object (based on position and size)
 
 	void killMe();						// if your object is a pointer, and you are done with it, call this
 
 
-	// extend ofxMSAInteractiveObject and override all or any of the following methods
+	// extend ofxMSAInteractiveObject and override all of any of the following methods
 	virtual void setup()	{}	// called when app starts
 	virtual void update()	{}	// called every frame to update object
     virtual void draw()		{}	// called every frame to draw object
@@ -84,7 +84,6 @@ public:
 	virtual void onDragOver(int x, int y, int button)		{}		// called when mouse moves while over object and button is down
 	virtual void onDragOutside(int x, int y, int button)	{}		// called when mouse moves while outside the object after being clicked on it
 	virtual void onPress(int x, int y, int button)			{}		// called when mouse presses while over object
-	virtual void onPressOutside(int x, int y, int button)	{}		// called when mouse presses while outside object
 	virtual void onRelease(int x, int y, int button)		{}		// called when mouse releases while over object
 	virtual void onReleaseOutside(int x, int y, int button)	{}		// called when mouse releases outside of object after being pressed on object
 
