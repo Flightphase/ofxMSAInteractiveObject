@@ -13,11 +13,6 @@
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
 
-#define		IDLE_COLOR		0xFFFFFF
-#define		OVER_COLOR		0x00FF00
-#define		DOWN_COLOR		0xFF0000
-
-
 class ofxMSAInteractiveObjectDelegate 
 {
   public:
@@ -35,41 +30,70 @@ class ofxMSAInteractiveObjectWithDelegate : public ofxMSAInteractiveObject {
 	
 	ofxMSAInteractiveObjectWithDelegate(){
 		delegate = NULL;
+		idleColor.setHex(0xFFFFFF);
+		hoverColor.setHex(0x00FF00);
+		downColor.setHex(0x00FF00);		
 	}
 	
 	void setup() {
-		//printf("MyTestObject::setup() - hello!\n");
 		enableMouseEvents();
 		enableKeyEvents();
 	}	
 	
-	void setDelegate(ofxMSAInteractiveObjectDelegate* _delegate)
-	{
+	void setDelegate(ofxMSAInteractiveObjectDelegate* _delegate){
 		delegate = _delegate;
-		if(delegate == NULL) cout << "Setting a DULL delegate" << endl;
-		else cout << "set delegate!" << endl;
 	}
 	
-	void exit() {
-		//printf("MyTestObject::exit() - goodbye!\n");
+	void setIdleColor(ofColor c){
+		idleColor = c;
 	}
 	
+	void setHoverColor(ofColor c){
+		hoverColor = c;
+	}
+	
+	void setDownColor(ofColor c){
+		downColor = c;
+	}
+
+	void setTextColor(ofColor c){
+		textColor = c;
+	}
+	
+	void setLabel(string l){
+		label = l;
+	}
+
+	string getLabel(){
+		return label;
+	}
 	
 	void update() {
-		//		x = ofGetWidth()/2 + cos(ofGetElapsedTimef() * 0.2) * ofGetWidth()/4;
-		//		y = ofGetHeight()/2 + sin(ofGetElapsedTimef() * 0.2) * ofGetHeight()/4;
-	}
 	
+	}
 	
 	void draw() {
         ofPushStyle();
         
-		if(isMouseDown()) ofSetColor(DOWN_COLOR);
-		else if(isMouseOver()) ofSetColor(OVER_COLOR);
-		else ofSetColor(IDLE_COLOR);
+		if(isMouseDown()){
+			ofSetColor(downColor);
+			ofFill();
+		}
+		else if(isMouseOver()){
+			ofSetColor(hoverColor);
+			ofFill();
+		}
+		else{
+			ofSetColor(idleColor);
+			ofNoFill();
+		}
 		
-		ofRect(x, y, width, height);
+		ofRect(*this);
         
+		ofSetColor(textColor);
+		if(label != ""){
+			ofDrawBitmapString(label, x+10, y+15);
+		}
         ofPopStyle();
 	}
 	
@@ -77,7 +101,7 @@ class ofxMSAInteractiveObjectWithDelegate : public ofxMSAInteractiveObject {
 		if(delegate != NULL){
 			delegate->objectDidRollOver(this, x, y);
 		}
-		//printf("MyTestObject::onRollOver(x: %i, y: %i)\n", x, y);
+
 	}
 	
 	virtual void onRollOut() {
@@ -129,4 +153,12 @@ class ofxMSAInteractiveObjectWithDelegate : public ofxMSAInteractiveObject {
 	
   private:
 	ofxMSAInteractiveObjectDelegate* delegate;
+	ofColor idleColor;
+	ofColor hoverColor;
+	ofColor downColor;
+	
+	ofColor textColor;
+	
+	string label;
+	
 };
