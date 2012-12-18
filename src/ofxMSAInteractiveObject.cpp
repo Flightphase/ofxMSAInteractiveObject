@@ -277,7 +277,7 @@ void ofxMSAInteractiveObject::_keyPressed(ofKeyEventArgs &e) {
 	int key = e.key;
 	if(verbose) printf("ofxMSAInteractiveObject::_keyPressed(key: %i)\n", key);
 	if(!enabled) return;
-	keyPressed(key);
+//	keyPressed(key);
 }
 
 
@@ -285,5 +285,5 @@ void ofxMSAInteractiveObject::_keyReleased(ofKeyEventArgs &e) {
 	int key = e.key;	
 	if(verbose) printf("ofxMSAInteractiveObject::_keyReleased(key: %i)\n", key);
 	if(!enabled) return;
-	keyReleased(key);
+//	keyReleased(key);
 }
