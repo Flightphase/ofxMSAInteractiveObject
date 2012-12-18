@@ -28,8 +28,10 @@ class ofxMSAInteractiveObjectWithDelegate : public ofxMSAInteractiveObject {
 
   public:
 	
+    ofTrueTypeFont* fontReference;
 	ofxMSAInteractiveObjectWithDelegate(){
 		delegate = NULL;
+        fontReference = NULL;
 		idleColor.setHex(0xFFFFFF);
 		hoverColor.setHex(0x00FF00);
 		downColor.setHex(0x00FF00);		
@@ -92,7 +94,12 @@ class ofxMSAInteractiveObjectWithDelegate : public ofxMSAInteractiveObject {
         
 		ofSetColor(textColor);
 		if(label != ""){
-			ofDrawBitmapString(label, x+10, y+15);
+            if(fontReference != NULL){
+                fontReference->drawString(label, x+10, y+15);
+            }
+            else {
+                ofDrawBitmapString(label, x+10, y+15);
+            }
 		}
         ofPopStyle();
 	}
