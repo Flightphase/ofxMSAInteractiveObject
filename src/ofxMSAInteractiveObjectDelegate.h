@@ -95,7 +95,7 @@ class ofxMSAInteractiveObjectWithDelegate : public ofxMSAInteractiveObject {
 		ofSetColor(textColor);
 		if(label != ""){
             if(fontReference != NULL){
-                fontReference->drawString(label, x+10, y+15);
+                fontReference->drawString(label, x+10, y+fontReference->getLineHeight()+3);
             }
             else {
                 ofDrawBitmapString(label, x+10, y+15);
